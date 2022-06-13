@@ -24,6 +24,16 @@ export const todoStore = defineStore('todoStore', {
           rej('error')
         }
       })
+    },
+    async removeTodo(id) {
+      return await new Promise((res, rej) => {
+        try {
+          this.todoList = this.todoList.filter((item) => item.id !== id)
+          res('success')
+        } catch (err) {
+          rej('error')
+        }
+      })
     }
   }
 
