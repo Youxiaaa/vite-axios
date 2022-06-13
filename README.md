@@ -18,15 +18,14 @@
 
 ## 引用封裝後 api 方法
 - src/main.js
-```
+```javascript
 import api from '../api/integrate.js'
 
 const app = createApp(App)
 app.provide('$api', api)
 ```
 - .vue引用
-```
-<script setup>
+```javascript
   import { ref, inject } from 'vue'
   // 初始化api列表
   const api = inject('$api')
@@ -42,5 +41,4 @@ app.provide('$api', api)
   }
   getUsers()
 
-</script>
 ```
