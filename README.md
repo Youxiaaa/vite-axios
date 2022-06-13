@@ -7,6 +7,8 @@
   - 自動引入 Components
 - aos
   - aos 動畫套件
+- pinia
+  - 狀態管理套件
 
 ## 結構
 - api
