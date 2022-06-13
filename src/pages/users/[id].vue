@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Loading />
+    <transition name="fade">
+      <Loading v-if="isLoading" />
+    </transition>
     <transition name="scale">
       <div v-if="user[0]" class="min-w-[400px] max-w-[800px] bg-white p-4 rounded-xl shadow-lg">
         <img :src="user[0].picture.large" class="w-24 h-24 rounded-full object-cover object-center">
@@ -24,7 +26,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { ref, inject } from 'vue'
+import { ref, inject, computed } from 'vue'
 const router = useRoute()
 
 // 取得 user api
@@ -34,12 +36,20 @@ const getOneUser = async () => {
   await api.getOneUser()
   .then((res) => {
     user.value = res.data.results
+    loadingStore.changeLoading(false)
   })
   .catch((err) => console.log(err))
+  loadingStore.changeLoading(false)
 }
 
 getOneUser()
 
 const id = router.params.id
+
+const pinia = inject('$stores')
+const loadingStore = pinia.loadingStore()
+loadingStore.changeLoading(true)
+
+const isLoading = computed(() => loadingStore.isLoadingGetter)
 
 </script>
