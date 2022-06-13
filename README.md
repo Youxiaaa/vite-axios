@@ -5,6 +5,8 @@
   - 路由套件
 - unplugin-vue-components
   - 自動引入 Components
+- aos
+  - aos 動畫套件
 
 ## 結構
 - api
@@ -41,4 +43,12 @@ app.provide('$api', api)
   }
   getUsers()
 
+```
+
+## 引用 aos 方法
+- src/main.js
+```javascript
+import aos from 'aos'
+import 'aos/dist/aos.css'
+const AOS = new (aos).init()
 ```

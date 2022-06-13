@@ -3,9 +3,14 @@ import App from './App.vue'
 import '../assets/css/main.css'
 import { router } from './router.js'
 
+// 引入 api
 import api from '../api/integrate.js'
-
 const app = createApp(App)
 app.provide('$api', api)
 
-app.use(router).mount('#app')
+// 引入 aos
+import aos from 'aos'
+import 'aos/dist/aos.css'
+const AOS = new (aos).init()
+
+app.use(router).use(AOS).mount('#app')
