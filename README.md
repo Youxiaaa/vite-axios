@@ -50,5 +50,9 @@ app.provide('$api', api)
 ```javascript
 import aos from 'aos'
 import 'aos/dist/aos.css'
+
+const app = createApp(App)
 const AOS = new (aos).init()
+
+app.use(router).use(AOS).mount('#app')
 ```

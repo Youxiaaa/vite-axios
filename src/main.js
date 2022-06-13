@@ -3,9 +3,10 @@ import App from './App.vue'
 import '../assets/css/main.css'
 import { router } from './router.js'
 
+const app = createApp(App)
+
 // 引入 api
 import api from '../api/integrate.js'
-const app = createApp(App)
 app.provide('$api', api)
 
 // 引入 aos
