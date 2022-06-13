@@ -17,7 +17,15 @@
   - 引用套件
 
 ## 引用封裝後 api 方法
-```javascript
+- src/main.js
+```
+import api from '../api/integrate.js'
+
+const app = createApp(App)
+app.provide('$api', api)
+```
+- .vue引用
+```
 <script setup>
   import { ref, inject } from 'vue'
   // 初始化api列表
