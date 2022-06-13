@@ -18,22 +18,21 @@
 
 ## 引用封裝後 api 方法
 ```javascript
-// 引入 getCurrentInstance
-import { getCurrentInstance } from 'vue'
-// 初始化api列表
-const { appContext: {
-  app: {
-    $api
+<script setup>
+  import { ref, inject } from 'vue'
+  // 初始化api列表
+  const api = inject('$api')
+
+  // 取得使用者
+  const users = ref([])
+  const getUsers = async () => {
+    await api.getUser()
+    .then((res) => {
+      users.value = res.data.results
+    })
+    .catch((err) => console.log(err))
   }
-} } = getCurrentInstance()
-// 取得使用者
-const users = ref([])
-const getUsers = async () => {
-  await $api.getUser()
-  .then((res) => {
-    users.value = res.data.results
-  })
-  .catch((err) => console.log(err))
-}
-getUsers()
+  getUsers()
+
+</script>
 ```

@@ -23,17 +23,13 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { onMounted, getCurrentInstance, ref } from 'vue'
-const { appContext: {
-  app: {
-    $api
-  }
-} } = getCurrentInstance()
+import { onMounted, ref, inject } from 'vue'
 const router = useRoute()
 
 const user = ref([])
+const api = inject('$api')
 const getUser = async () => {
-  await $api.getOneUser()
+  await api.getOneUser()
   .then((res) => {
     user.value = res.data.results
   })

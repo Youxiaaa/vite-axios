@@ -6,6 +6,6 @@ import { router } from './router.js'
 import api from '../api/integrate.js'
 
 const app = createApp(App)
-app.$api = api
+app.provide('$api', api)
 
 app.use(router).mount('#app')

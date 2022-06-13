@@ -16,18 +16,14 @@
 </template>
 
 <script setup>
-  import { ref, getCurrentInstance } from 'vue'
+  import { ref, inject } from 'vue'
   // 初始化api列表
-  const { appContext: {
-    app: {
-      $api
-    }
-  } } = getCurrentInstance()
+  const api = inject('$api')
 
   // 取得使用者
   const users = ref([])
   const getUsers = async () => {
-    await $api.getUser()
+    await api.getUser()
     .then((res) => {
       users.value = res.data.results
     })
