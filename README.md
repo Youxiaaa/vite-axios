@@ -15,6 +15,8 @@
   - 封裝 axios
 - src/router.js
   - 封裝 router
+- src/store
+  - 封裝 pinia
 - src/main.js
   - 引用 router, api
 - vite.config.js
@@ -72,11 +74,20 @@ app.use(pinia)
 ```
 - .vue 內使用
 ```javascript
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 const pinia = inject('$stores')
 const todoStore = pinia.todoStore()
 
 const todoList = ref([])
 
-todoList.value = todoStore.todoListGetter
+const filterTodos = computed(() => {
+  switch(selectedMenu.value) {
+    case '全部':
+      return todoStore.todoListGetter
+    case '未完成':
+      return todoStore.todoListGetter.filter((item) => !item.isCompleted)
+    case '已完成':
+      return todoStore.todoListGetter.filter((item) => item.isCompleted)
+  }
+})
 ```
