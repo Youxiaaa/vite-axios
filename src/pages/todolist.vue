@@ -9,7 +9,3 @@
     </RouterView>
   </div>
 </template>
-
-<script>
-
-</script>

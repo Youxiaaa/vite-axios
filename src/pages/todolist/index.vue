@@ -3,7 +3,3 @@
     <TodoList />
   </div>
 </template>
-
-<script setup>
-
-</script>

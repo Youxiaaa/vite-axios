@@ -5,7 +5,7 @@ export const todoStore = defineStore('todoStore', {
   state: () => {
     return {
       todoList: [
-        {id: 1, label: 'pinia', isCompleted: false}
+        {id: Date.now(), label: 'pinia', isCompleted: false}
       ]
     }
   },
