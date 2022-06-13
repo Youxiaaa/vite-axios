@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="bg-white p-4 rounded-xl shadow-md min-w-[400px] max-w-[95vw]">
-      <input @keyup.enter="addTodo()" v-model="newTodo" type="text" class="w-full border-2 border-black rounded-lg py-1.5 px-4 focus:outline-black">
+      <div class="w-full relative">
+        <input @keyup.enter="addTodo()" v-model="newTodo" type="text" class="w-full border-2 border-black rounded-lg py-1.5 px-4 focus:outline-black">
+        <div @click="addTodo()" class="absolute right-0 top-0 bg-black w-12 h-full rounded-[0px_12px_12px_0px] flex items-center justify-center cursor-pointer">
+          <p class="text-white font-bold text2xl">+</p>
+        </div>
+      </div>
       <ul class="flex gap-4 mt-4">
         <li @click="selectedMenu = item.label" v-for="item in menu" :key="item.id" :class="{'bg-black text-white': selectedMenu === item.label}" class="w-full py-1.5 px-4 border-2 border-black rounded-lg text-center font-bold duration-300 cursor-pointer select-none">{{ item.label }}</li>
       </ul>
@@ -22,7 +27,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
+const pinia = inject('$stores')
+const todoStore = pinia.todoStore()
+const todoList = ref([])
+
+todoList.value = todoStore.todoListGetter
+
 const menu = ref([
   {id: 1, label: '全部'},
   {id: 2, label: '未完成'},
@@ -30,13 +41,9 @@ const menu = ref([
 ])
 const selectedMenu = ref('全部')
 
-const todoList = ref([
-  {id: 1, label: 'test', isCompleted: false}
-])
-
 const newTodo = ref('')
 
-const addTodo = () => {
+const addTodo = async () => {
   const val = newTodo.value.trim()
   if (!val) return
   const todo = {
@@ -44,7 +51,13 @@ const addTodo = () => {
     label: val,
     isCompleted: false
   }
-  todoList.value.push(todo)
+  await todoStore.addTodo(todo)
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
   newTodo.value = ''
 }
 

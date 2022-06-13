@@ -1,7 +1,8 @@
 <template>
   <div>
+    <Loading />
     <transition name="scale">
-      <div v-if="user[0]" class="w-full max-w-[800px] bg-white p-4 rounded-xl shadow-lg">
+      <div v-if="user[0]" class="min-w-[400px] max-w-[800px] bg-white p-4 rounded-xl shadow-lg">
         <img :src="user[0].picture.large" class="w-24 h-24 rounded-full object-cover object-center">
         <h2 class="text-2xl font-bold">{{ user[0].name.title }} {{ user[0].name.first }} {{ user[0].name.last }}</h2>
         <p class="mt-auto">{{ user[0].email }}</p>
@@ -10,8 +11,8 @@
       </div>
     </transition>
     <div class="flex gap-4 my-5">
-      <router-link to="/users/79c92f84-3091-480b-bfc6-22bfb299251b/" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to index</router-link>
-      <router-link to="/users/79c92f84-3091-480b-bfc6-22bfb299251b/info" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to info</router-link>
+      <router-link :to="`/users/${id}/`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to index</router-link>
+      <router-link :to="`/users/${id}/info`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to info</router-link>
     </div>
     <RouterView v-slot="{ Component }">
       <transition name="scale" mode="out-in">
@@ -23,12 +24,13 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { onMounted, ref, inject } from 'vue'
+import { ref, inject } from 'vue'
 const router = useRoute()
 
+// 取得 user api
 const user = ref([])
 const api = inject('$api')
-const getUser = async () => {
+const getOneUser = async () => {
   await api.getOneUser()
   .then((res) => {
     user.value = res.data.results
@@ -36,9 +38,8 @@ const getUser = async () => {
   .catch((err) => console.log(err))
 }
 
-onMounted(() => {
-  console.log(router.params.id)
-  getUser(router.params.id)
-})
+getOneUser()
+
+const id = router.params.id
 
 </script>

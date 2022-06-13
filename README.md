@@ -1,4 +1,4 @@
-# Vite Axios 封裝
+# Vite Axios Pinia 封裝
 
 ## 使用套件
 - vite-plugin-pages
@@ -55,4 +55,26 @@ const app = createApp(App)
 const AOS = new (aos).init()
 
 app.use(router).use(AOS).mount('#app')
+```
+
+## 引用 pinia 方法
+- src/main.js
+```javascript
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+
+import stores from './store/index.js'
+app.provide('$stores', stores)
+
+app.use(pinia)
+```
+- .vue 內使用
+```javascript
+import { inject } from 'vue'
+const pinia = inject('$stores')
+const todoStore = pinia.todoStore()
+
+const todoList = ref([])
+
+todoList.value = todoStore.todoListGetter
 ```

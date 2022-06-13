@@ -14,4 +14,10 @@ import aos from 'aos'
 import 'aos/dist/aos.css'
 const AOS = new (aos).init()
 
-app.use(router).use(AOS).mount('#app')
+// 引入 Pinia 以及封裝後的 stores
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+import stores from './store/index.js'
+app.provide('$stores', stores)
+
+app.use(router).use(AOS).use(pinia).mount('#app')
