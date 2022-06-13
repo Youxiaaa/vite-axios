@@ -17,7 +17,7 @@
 
 <script setup>
   import { ref, inject } from 'vue'
-  // 初始化api列表
+  // 引入api
   const api = inject('$api')
 
   // 取得使用者
@@ -29,6 +29,7 @@
     })
     .catch((err) => console.log(err))
   }
+  
   getUsers()
 
 </script>

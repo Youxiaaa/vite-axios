@@ -8,8 +8,8 @@
       <transition-group name="scale" tag="ul" class="mt-4 flex flex-col gap-4">
         <li v-for="item in filterTodos" :key="item.id" class="border-2 border-black rounded-lg py-1.5 px-4 flex items-center justify-between select-none">
           <div class="flex items-center gap-4">
-            <label :for="item.id" class="w-6 h-6 rounded-full border border-black flex items-center justify-center cursor-pointer">
-              <div :class="{'scale-100': item.isCompleted}" class="w-4 h-4 rounded-full bg-black duration-300 scale-0"></div>
+            <label :for="item.id" class="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center cursor-pointer">
+              <div :class="{'scale-100': item.isCompleted, 'scale-0': !item.isCompleted}" class="w-4 h-4 rounded-full bg-black duration-300"></div>
             </label>
             <input type="checkbox" v-model="item.isCompleted" :id="item.id" class="hidden">
             <p>{{ item.label }}</p>
@@ -40,7 +40,7 @@ const addTodo = () => {
   const val = newTodo.value.trim()
   if (!val) return
   const todo = {
-    id: new Date(),
+    id: Date.now(),
     label: val,
     isCompleted: false
   }
