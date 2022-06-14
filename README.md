@@ -3,6 +3,8 @@
 ## 使用套件
 - vite-plugin-pages
   - 路由套件
+- vite-plugin-vue-layouts
+  - 佈局套件
 - unplugin-vue-components
   - 自動引入 Components
 - aos
@@ -47,6 +49,43 @@ app.provide('$api', api)
   }
   getUsers()
 
+```
+
+## 引用佈局套件方法
+- vite.config.js
+```javascript
+import Components from 'unplugin-vue-components/vite'
+Layouts({
+  layoutsDirs: 'src/layout',
+  defaultLayout: 'default'
+})
+```
+- 將 router 修改為以下
+```javascript
+// src/router.js
+import { createRouter, createWebHistory } from "vue-router"
+import { setupLayouts } from 'virtual:generated-layouts'
+import generatedRoutes from 'virtual:generated-pages'
+
+const routes = setupLayouts(generatedRoutes)
+
+export const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+```
+- 新增 src/layout -> default.vue
+```javascript
+<template>
+  <div>
+    <Header />
+    <router-view v-slot="{ Component, route }">
+      <transition name="slide" mode="out-in">
+        <component :is="Component" :key="route" />
+      </transition>
+    </router-view>
+  </div>
+</template>
 ```
 
 ## 引用 aos 方法

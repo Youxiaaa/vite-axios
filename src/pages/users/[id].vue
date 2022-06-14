@@ -16,11 +16,7 @@
       <router-link :to="`/users/${id}/`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to index</router-link>
       <router-link :to="`/users/${id}/info`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to info</router-link>
     </div>
-    <RouterView v-slot="{ Component }">
-      <transition name="scale" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </RouterView>
+    <RouterView />
   </div>
 </template>
 
