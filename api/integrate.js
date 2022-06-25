@@ -1,8 +1,7 @@
-import { getUser, getOneUser } from './users'
+import users from './users'
 
 const api = {
-  getUser,
-  getOneUser
+  users
 }
 
 export default api

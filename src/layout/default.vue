@@ -1,8 +1,15 @@
 <template>
   <div>
     <Header />
+    <Loading />
+    <Contain />
+    <!-- <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transitionName">
+        <component :is="Component" />
+      </transition>
+    </router-view> -->
     <router-view v-slot="{ Component, route }">
-      <transition name="slide" mode="out-in">
+      <transition name="delayFade" mode="out-in">
         <component :is="Component" :key="route" />
       </transition>
     </router-view>

@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-enter-active,
+body, html {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-focus-ring-color: rgba(0, 0, 0, 0);
+}
+
 .fade-leave-active {
-  transition: opacity .3s;
+  transition: all .3s;
+}
+
+.fade-enter-active {
+  transition: all .3s;
+  transition-delay: .3s;
 }
 
 .fade-enter-from,
@@ -12,9 +21,38 @@
   opacity: 0;
 }
 
-.slide-enter-active,
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+.delayFade-leave-active {
+  transition: all .3s;
+  transition-delay: .7s;
+}
+
+.delayFade-enter-active {
+  transition: all .3s;
+}
+
+.delayFade-enter-from,
+.delayFade-leave-to {
+  opacity: 0;
+}
+
+.delayFade-enter-to,
+.delayFade-leave-from {
+  opacity: 1;
+}
+
+
 .slide-leave-active {
-  transition: all 0.3s;
+  transition: all 0.5s cubic-bezier(1,-0.41,0,1.5);
+}
+
+.slide-enter-active {
+  transition: all 0.5s cubic-bezier(1,-0.41,0,1.5);
+  transition-delay: 0.3s;
 }
 
 .slide-enter-to {
@@ -37,13 +75,18 @@
   left: 0;
 }
 
-.scale-enter-active,
+
 .scale-leave-active {
   transition: all 0.5s ease;
+}
+
+.scale-enter-active {
+  transition: all 0.5s ease;
+  transition-delay: 0.5s;
 }
 
 .scale-enter-from,
 .scale-leave-to {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.8);
 }

@@ -1,10 +1,6 @@
 <template>
-  <div id="firstPos">
-    <transition name="fade">
-      <Loading v-if="isLoading" />
-    </transition>
-    <h1 class="text-center mb-10 text-3xl font-bold">Users page</h1>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-[968px]">
+  <div id="firstPos" class="pt-20">
+    <ul v-if="isShow" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-[968px]">
       <li data-aos="zoom-in" data-aos-duration="300" :data-aos-delay="(idx * 100)" data-aos-anchor="#firstPos" v-for="(item, idx) in users" :key="item.phone" class="bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4 cursor-pointer">
         <router-link :to="`/users/${item.login.uuid}`">
           <img :src="item.picture.large" class="w-24 h-24 rounded-full object-cover object-center">
@@ -25,21 +21,26 @@
 
   // 取得使用者
   const users = ref([])
+  const isShow = ref(false)
   const getUsers = async () => {
-    await api.getUser()
+    await api.users.getUser()
     .then((res) => {
       users.value = res.data.results
-      loadingStore.changeLoading(false)
+      setTimeout(() => {
+        isShow.value = true
+        containStore.changeLoading(false)
+      }, 1000)
     })
     .catch((err) => console.log(err))
-    loadingStore.changeLoading(false)
+    setTimeout(() => {
+      containStore.changeLoading(false)
+    }, 1000)
   }
   
   getUsers()
   
   const pinia = inject('$stores')
-  const loadingStore = pinia.loadingStore()
-  loadingStore.changeLoading(true)
-  const isLoading = computed(() => loadingStore.isLoadingGetter)
+  const containStore = pinia.containStore()
+  containStore.changeLoading(true)
 
 </script>

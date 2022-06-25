@@ -1,4 +1,8 @@
 import api from './index'
 
-export const getUser = async () => api.get(`api/?results=30`)
-export const getOneUser = async (id) => api.get(`api/?uuid=${id}`)
+const users = {
+  getUser: async () => api.get(`api/?results=30`),
+  getOneUser: async (id) => api.get(`api/?uuid=${id}`)
+}
+
+export default users

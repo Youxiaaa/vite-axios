@@ -1,9 +1,20 @@
 <template>
-  <div class="w-full min-h-screen flex items-center justify-center flex-col gap-4 p-4 bg-[#f4f4f4]">
-    <h1 class="text-3xl font-bold"> index page </h1>
-    <div class="flex items-center gap-4">
-      <router-link to="/users" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white hover:from-purple-300 hover:to-pink-300">Random Users Page</router-link>
-      <router-link to="/todolist" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white hover:from-purple-300 hover:to-pink-300">todoList Page</router-link>
+  <section>
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full min-h-screen">
+        <img src="/1.webp" class="w-full h-full object-cover">
+      <div class="flex flex-col w-full h-full">
+        <img src="/2.webp" class="w-full h-full object-cover">
+        <img src="/3.jpeg" class="w-full h-full object-cover">
+      </div>
     </div>
-  </div>
+    <div class="relative w-screen h-screen">
+      <video autoplay muted loop class="absolute top-0 left-0 min-w-full min-h-full object-cover">
+        <source src="/video1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 w-screen min-h-screen">
+      <img src="/4.webp" class="w-full h-full object-cover">
+      <img src="/5.jpeg" class="w-full h-full object-cover">
+    </div>
+  </section>
 </template>

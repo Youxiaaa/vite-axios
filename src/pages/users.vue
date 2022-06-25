@@ -3,3 +3,10 @@
     <RouterView />
   </div>
 </template>
+
+// 變更 layout
+<!-- <route lang="yaml">
+meta:
+  layout: noHeader
+</route> -->
+
