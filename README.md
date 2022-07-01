@@ -114,8 +114,7 @@ app.use(pinia)
 - .vue 內使用
 ```javascript
 import { inject, computed } from 'vue'
-const pinia = inject('$stores')
-const todoStore = pinia.todoStore()
+const todoStore = inject('$stores').todoStore()
 
 const todoList = ref([])
 

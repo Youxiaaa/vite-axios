@@ -13,5 +13,6 @@
         <component :is="Component" :key="route" />
       </transition>
     </router-view>
+    <Footer />
   </div>
 </template>

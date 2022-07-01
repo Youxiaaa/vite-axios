@@ -16,5 +16,16 @@
       <img src="/4.webp" class="w-full h-full object-cover">
       <img src="/5.jpeg" class="w-full h-full object-cover">
     </div>
+    <div class="w-full min-h-screen flex flex-col items-center justify-center gap-5">
+      <h2 class="text-5xl font-bold">TodoList</h2>
+      <ul class="flex flex-col gap-4">
+        <li v-for="(item, idx) in todoList" :key="item.id" data-aos="fade-up" data-aos-duration="500" :data-aos-delay="300 + (idx * 100)" class="text-xl font-bold">{{ idx + 1 }}. {{ item.label }}</li>
+      </ul>
+    </div>
   </section>
 </template>
+<script setup>
+import { inject } from 'vue'
+const todoStore = inject('$stores').todoStore()
+const todoList = todoStore.todoListGetter
+</script>

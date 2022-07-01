@@ -33,14 +33,14 @@
 
 <script setup>
 import { ref, computed, inject } from 'vue'
-const pinia = inject('$stores')
-const todoStore = pinia.todoStore()
+const todoStore = inject('$stores').todoStore()
 
 const menu = ref([
   {id: 1, label: '全部'},
   {id: 2, label: '未完成'},
   {id: 3, label: '已完成'}
 ])
+
 const selectedMenu = ref('全部')
 
 const newTodo = ref('')
