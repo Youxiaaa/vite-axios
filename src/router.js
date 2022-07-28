@@ -27,8 +27,10 @@ const needFadeList = ['/todoList', '/todolist']
 
 router.afterEach((to, from) => {
   if (to.path === from.path) return
+
   const useStore = containStore()
   useStore.changeLoading(true)
+
   to.matched.forEach((item) => {
     if (needTokenList.includes(item.path)) {
       if (!token) router.push('/')
@@ -39,9 +41,11 @@ router.afterEach((to, from) => {
 
 router.beforeEach(() => {
   const useStore = containStore()
+
   setTimeout(() => {
     useStore.changeLoading(false)
   }, 1300)
+  
 })
 
 export default router

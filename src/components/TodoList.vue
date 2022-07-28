@@ -32,7 +32,6 @@
 </template>
 
 <script setup>
-import { ref, computed, inject } from 'vue'
 const todoStore = inject('$stores').todoStore()
 
 const menu = ref([

@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default defineConfig({
   plugins: [
@@ -12,7 +13,11 @@ export default defineConfig({
       layoutsDirs: 'src/layout',
       defaultLayout: 'default'
     }),
-    Components()
+    Components(),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: 'src/auto-imports.js'
+    })
   ],
   server: {
     host: '0.0.0.0',

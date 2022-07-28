@@ -25,7 +25,6 @@
   </section>
 </template>
 <script setup>
-import { inject } from 'vue'
 const todoStore = inject('$stores').todoStore()
 const todoList = todoStore.todoListGetter
 </script>

@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-  import { ref, inject, computed } from 'vue'
   // 引入api
   const api = inject('$api')
 

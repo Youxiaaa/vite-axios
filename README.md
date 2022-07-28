@@ -7,6 +7,8 @@
   - 佈局套件
 - unplugin-vue-components
   - 自動引入 Components
+- unplugin-auto-import
+  - 自動 import
 - aos
   - aos 動畫套件
 - pinia
@@ -51,6 +53,25 @@ app.provide('$api', api)
 
 ```
 
+## 引用 unplugin-auto-import 方法
+- vite.config.js
+```javascript
+import AutoImport from 'unplugin-auto-import/vite'
+
+plugins: [
+  vue(),
+  AutoImport({
+    imports: ['vue', 'vue-router'],
+    dts: 'src/auto-imports.js'
+  })
+
+  // .vue 裡使用
+<script setup>
+  const todoStore = inject('$stores').todoStore()
+  const todoList = todoStore.todoListGetter
+</script>
+],
+```
 ## 引用佈局套件方法
 - vite.config.js
 ```javascript
