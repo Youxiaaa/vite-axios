@@ -64,13 +64,13 @@ plugins: [
     imports: ['vue', 'vue-router'],
     dts: 'src/auto-imports.js'
   })
+]
 
 // .vue 裡使用，不需使用 import { xxx } from 'xxx'
 <script setup>
   const todoStore = inject('$stores').todoStore()
   const todoList = todoStore.todoListGetter
 </script>
-]
 ```
 ## 引用佈局套件方法
 - vite.config.js
