@@ -27,22 +27,23 @@ const router = useRoute()
 // 取得 user api
 const user = ref([])
 const api = inject('$api')
+
+const containStore = inject('$stores').containStore()
+
 const getOneUser = async () => {
   await api.users.getOneUser()
   .then((res) => {
     user.value = res.data.results
-    loadingStore.changeLoading(false)
+    containStore.changeLoading(false)
   })
-  .catch((err) => console.log(err))
-  loadingStore.changeLoading(false)
+  .catch((err) => {
+    console.log(err)
+    containStore.changeLoading(false)
+  })
 }
 
 getOneUser()
 
 const id = router.params.id
-
-const pinia = inject('$stores')
-const loadingStore = pinia.loadingStore()
-loadingStore.changeLoading(true)
 
 </script>

@@ -25,7 +25,7 @@ const token = getToken()
 
 const needFadeList = ['/todoList', '/todolist']
 
-router.afterEach((to, from) => {
+router.beforeEach((to, from) => {
   if (to.path === from.path) return
 
   const useStore = containStore()
@@ -33,19 +33,14 @@ router.afterEach((to, from) => {
 
   to.matched.forEach((item) => {
     if (needTokenList.includes(item.path)) {
-      if (!token) router.push('/')
+      if (!token) {
+        router.push('/')
+        useStore.changeLoading(false)
+      }
     }
   })
-  needFadeList.includes(to.path) ? to.meta.transitionName = 'scale' : to.meta.transitionName = 'slide'
-})
-
-router.beforeEach(() => {
-  const useStore = containStore()
-
-  setTimeout(() => {
-    useStore.changeLoading(false)
-  }, 1300)
-  
+  to.meta.transitionName = 'slide'
+  // needFadeList.includes(to.path) ? to.meta.transitionName = 'scale' : to.meta.transitionName = 'slide'
 })
 
 export default router

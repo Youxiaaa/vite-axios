@@ -27,4 +27,7 @@
 <script setup>
 const todoStore = inject('$stores').todoStore()
 const todoList = todoStore.todoListGetter
+const containStore = inject('$stores').containStore()
+
+containStore.changeLoading(false)
 </script>

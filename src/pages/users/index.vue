@@ -21,25 +21,28 @@
   // 取得使用者
   const users = ref([])
   const isShow = ref(false)
+
+  // 引入 Loading pinia store
+  const containStore = inject('$stores').containStore()
+
   const getUsers = async () => {
     await api.users.getUser()
     .then((res) => {
       users.value = res.data.results
+      containStore.changeLoading(false)
+
       setTimeout(() => {
         isShow.value = true
-        containStore.changeLoading(false)
       }, 1000)
+
     })
-    .catch((err) => console.log(err))
-    setTimeout(() => {
+    .catch((err) => {
+      console.log(err)
       containStore.changeLoading(false)
-    }, 1000)
+    })
+
   }
   
   getUsers()
   
-  const pinia = inject('$stores')
-  const containStore = pinia.containStore()
-  containStore.changeLoading(true)
-
 </script>

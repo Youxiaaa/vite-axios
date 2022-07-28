@@ -3,7 +3,7 @@
     <RouterView />
   </div>
 </template>
-<route lang="yaml">
+<!-- <route lang="yaml">
 meta:
   layout: noHeader
-</route>
+</route> -->
