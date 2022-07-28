@@ -65,7 +65,7 @@ plugins: [
     dts: 'src/auto-imports.js'
   })
 
-  // .vue 裡使用
+// .vue 裡使用，不需使用 import { xxx } from 'xxx'
 <script setup>
   const todoStore = inject('$stores').todoStore()
   const todoList = todoStore.todoListGetter
