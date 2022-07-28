@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 const menu = ref([
   {id: 1, label: 'Home', value: '/'},
   {id: 2, label: 'Users', value: '/users'},

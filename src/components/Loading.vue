@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { computed, inject } from 'vue'
+
   const pinia = inject('$stores')
   const loadingStore = pinia.loadingStore()
   

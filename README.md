@@ -70,7 +70,7 @@ plugins: [
   const todoStore = inject('$stores').todoStore()
   const todoList = todoStore.todoListGetter
 </script>
-],
+]
 ```
 ## 引用佈局套件方法
 - vite.config.js

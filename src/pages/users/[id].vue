@@ -22,8 +22,6 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
-import { ref, inject } from 'vue'
 const router = useRoute()
 
 // 取得 user api
