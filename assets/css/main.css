@@ -28,7 +28,7 @@ body, html {
 
 .delayFade-leave-active {
   transition: all .3s;
-  transition-delay: .7s;
+  transition-delay: 1s;
 }
 
 .delayFade-enter-active {

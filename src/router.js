@@ -39,7 +39,8 @@ router.beforeEach((to, from) => {
       }
     }
   })
-  to.meta.transitionName = 'slide'
+
+  // 判斷特定頁面給予不同 transition 效果
   // needFadeList.includes(to.path) ? to.meta.transitionName = 'scale' : to.meta.transitionName = 'slide'
 })
 

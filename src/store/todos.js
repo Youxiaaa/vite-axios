@@ -13,7 +13,8 @@ export const todoStore = defineStore('todoStore', () => {
       try {
         todoList.value.push(todo)
         res('success')
-      } catch (err) {
+      }
+      catch (err) {
         rej('error')
       }
     })
@@ -24,7 +25,8 @@ export const todoStore = defineStore('todoStore', () => {
       try {
         todoList.value = todoList.value.filter((item) => item.id !== id)
         res('success')
-      } catch (err) {
+      }
+      catch (err) {
         rej('error')
       }
     })
