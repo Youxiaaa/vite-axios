@@ -1,20 +1,17 @@
 import { defineStore } from "pinia"
 
-export const containStore = defineStore('containStore', {
-  state: () => {
-    return {
-      isLoading: false
-    }
-  },
+export const containStore = defineStore('containStore', () => {
+  const isLoading = ref(false)
 
-  getters: {
-    isLoadingGetter: (state) => state.isLoading
-  },
+  const isLoadingGetter = computed(() => isLoading.value)
 
-  actions: {
-    changeLoading(bool) {
-      this.isLoading = bool
-    }
+  const changeLoading = (bool) => {
+    isLoading.value = bool
   }
 
+  return {
+    isLoading,
+    isLoadingGetter,
+    changeLoading
+  }
 })

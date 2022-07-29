@@ -10,8 +10,8 @@
       </div>
     </transition>
     <div class="flex gap-4 my-5">
-      <router-link :to="`/users/${id}/`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to index</router-link>
-      <router-link :to="`/users/${id}/info`" class="py-2 px-4 rounded-xl bg-gradient-to-tr from-pink-300 to-purple-300 text-white">to info</router-link>
+      <router-link :to="`/users/${id}/`" class="py-2 px-4 rounded-xl bg-black text-white">to index</router-link>
+      <router-link :to="`/users/${id}/info`" class="py-2 px-4 rounded-xl border border-black">to info</router-link>
     </div>
     <router-view v-slot="{ Component }">
       <transition name="fade">
