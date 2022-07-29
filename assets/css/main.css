@@ -90,3 +90,10 @@ body, html {
   opacity: 0;
   transform: scale(0.8);
 }
+
+/* 設定滾動條不出現 */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
